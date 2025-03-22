@@ -8,6 +8,9 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from rest_framework import generics
 from .serializers import DriverRegistrationSerializer
+from rest_framework import viewsets
+from .models import Trip, Log
+from .serializers import TripSerializer, LogSerializer
 
 class TripViewSet(viewsets.ModelViewSet):
     queryset = Trip.objects.all().order_by('-created_at')
@@ -36,3 +39,14 @@ class UserLogin(APIView):
 class DriverRegistration(generics.CreateAPIView):
     serializer_class = DriverRegistrationSerializer
     queryset = Driver.objects.all()
+    
+class TripViewSet(viewsets.ModelViewSet):
+    queryset = Trip.objects.all()
+    serializer_class = TripSerializer
+
+class LogViewSet(viewsets.ModelViewSet):
+    queryset = Log.objects.all()
+    serializer_class = LogSerializer
+
+    def get_queryset(self):
+        return self.queryset.filter(trip=self.kwargs['trip_pk'])
