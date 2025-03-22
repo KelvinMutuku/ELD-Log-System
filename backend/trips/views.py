@@ -1,11 +1,13 @@
 from rest_framework import viewsets
-from .models import Trip, Log
+from .models import Driver, Trip, Log
 from .serializers import TripSerializer, LogSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
+from rest_framework import generics
+from .serializers import DriverRegistrationSerializer
 
 class TripViewSet(viewsets.ModelViewSet):
     queryset = Trip.objects.all().order_by('-created_at')
@@ -30,3 +32,7 @@ class UserLogin(APIView):
                 'is_admin': user.is_staff
             }, status=status.HTTP_200_OK)
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+    
+class DriverRegistration(generics.CreateAPIView):
+    serializer_class = DriverRegistrationSerializer
+    queryset = Driver.objects.all()
