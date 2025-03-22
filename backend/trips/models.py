@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 class Trip(models.Model):
     current_location = models.CharField(max_length=255, help_text="Driver's current location (e.g., City, State)")
@@ -23,3 +24,16 @@ class Log(models.Model):
     def __str__(self):
         return f"Log for {self.date} (Trip ID: {self.trip.id})"
     
+class Driver(AbstractUser):
+    license_number = models.CharField(max_length=20, unique=True)
+    company = models.CharField(max_length=100, blank=True)
+    phone = models.CharField(max_length=15)
+    
+    class Meta:
+        verbose_name = 'Driver'
+        verbose_name_plural = 'Drivers'
+
+class DriverProfile(models.Model):
+    driver = models.OneToOneField(Driver, on_delete=models.CASCADE)
+    vehicle_type = models.CharField(max_length=50)
+    years_experience = models.PositiveIntegerField(default=0)
