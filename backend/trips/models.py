@@ -22,3 +22,4 @@ class Log(models.Model):
 
     def __str__(self):
         return f"Log for {self.date} (Trip ID: {self.trip.id})"
+    

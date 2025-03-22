@@ -9,3 +9,4 @@ class TripViewSet(viewsets.ModelViewSet):
 class LogViewSet(viewsets.ModelViewSet):
     queryset = Log.objects.all().order_by('-date')
     serializer_class = LogSerializer
+    
