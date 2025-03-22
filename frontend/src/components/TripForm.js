@@ -1,29 +1,66 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const TripForm = () => {
-    const [tripDetails, setTripDetails] = useState({
-        currentLocation: '',
-        pickupLocation: '',
-        dropoffLocation: '',
-        currentCycleUsed: 0
-    });
+const TripForm = ({ onTripCreated }) => {
+  const [formData, setFormData] = useState({
+    current_location: '',
+    pickup_location: '',
+    dropoff_location: '',
+    current_cycle_used: 0
+  });
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const response = await axios.post('/api/trips/', tripDetails);
-        console.log(response.data);
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('/api/trips/', formData);
+      onTripCreated(response.data);
+      setFormData({
+        current_location: '',
+        pickup_location: '',
+        dropoff_location: '',
+        current_cycle_used: 0
+      });
+    } catch (error) {
+      console.error('Error creating trip:', error);
+    }
+  };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Current Location" onChange={(e) => setTripDetails({...tripDetails, currentLocation: e.target.value})} />
-            <input type="text" placeholder="Pickup Location" onChange={(e) => setTripDetails({...tripDetails, pickupLocation: e.target.value})} />
-            <input type="text" placeholder="Dropoff Location" onChange={(e) => setTripDetails({...tripDetails, dropoffLocation: e.target.value})} />
-            <input type="number" placeholder="Current Cycle Used (Hrs)" onChange={(e) => setTripDetails({...tripDetails, currentCycleUsed: e.target.value})} />
-            <button type="submit">Submit</button>
-        </form>
-    );
+  return (
+    <div className="form-container">
+      <h2>Create New Trip</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Current Location"
+          value={formData.current_location}
+          onChange={e => setFormData({...formData, current_location: e.target.value})}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Pickup Location"
+          value={formData.pickup_location}
+          onChange={e => setFormData({...formData, pickup_location: e.target.value})}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Dropoff Location"
+          value={formData.dropoff_location}
+          onChange={e => setFormData({...formData, dropoff_location: e.target.value})}
+          required
+        />
+        <input
+          type="number"
+          placeholder="Current Cycle Used"
+          value={formData.current_cycle_used}
+          onChange={e => setFormData({...formData, current_cycle_used: e.target.value})}
+          required
+        />
+        <button type="submit">Create Trip</button>
+      </form>
+    </div>
+  );
 };
 
 export default TripForm;

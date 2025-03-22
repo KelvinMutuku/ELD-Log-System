@@ -8,6 +8,10 @@ import PrivateRoute from './components/PrivateRoute';
 import UserDashboard from './components/UserDashboard';
 import AdminDashboard from './components/AdminDashboard';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import TripList from './components/TripList';
+import TripForm from './components/TripForm';
+import LogForm from './components/LogForm';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -71,6 +75,27 @@ function App() {
     </div>
   );
 }
+
+
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={
+            <>
+              <TripForm />
+              <TripList />
+            </>
+          } />
+          <Route path="/trips/:tripId/logs" element={<LogForm />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+
+// export default App;
 
 // Wrap App with Router
 export default function AppWrapper() {
