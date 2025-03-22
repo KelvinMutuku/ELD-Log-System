@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'trips',
+    "trips",
 ]
 
 MIDDLEWARE = [
@@ -102,7 +102,7 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
 
-AUTH_USER_MODEL = 'trips.Driver'
+AUTH_USER_MODEL = "trips.Driver"
 
 
 # Password validation
