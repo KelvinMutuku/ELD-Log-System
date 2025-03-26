@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$jxwe5go6#0xnl@f%9m^!q!*p^bqs#zl5e6_n52(iuui(#5&r&'
+SECRET_KEY = 'django-insecure-n7#tn43e0+v%^t(5pdm(=phh*$9bz=j_!1+%#bm^^)rx^0l76d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,9 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
     'corsheaders',
-    "trips",
+    'rest_framework',
+    'api'
 ]
 
 MIDDLEWARE = [
@@ -51,12 +50,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'backend.urls'
-
-CORS_ALLOW_ALL_ORIGINS = True
 
 TEMPLATES = [
     {
@@ -83,7 +80,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'eld_logs',
+        'NAME': 'triplog_db',
         'USER': 'postgres',
         'PASSWORD': 'Mutuku1@',
         'HOST': 'localhost',
@@ -91,19 +88,9 @@ DATABASES = {
     }
 }
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
-}
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-}
-
-AUTH_USER_MODEL = "trips.Driver"
-
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # React frontend
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

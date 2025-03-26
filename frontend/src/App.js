@@ -8,7 +8,6 @@ import PrivateRoute from './components/PrivateRoute';
 import UserDashboard from './components/UserDashboard';
 import AdminDashboard from './components/AdminDashboard';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import TripList from './components/TripList';
 import TripForm from './components/TripForm';
 import LogForm from './components/LogForm';
