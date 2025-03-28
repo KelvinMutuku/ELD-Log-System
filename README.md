@@ -2,7 +2,7 @@
 
 A full-stack web application built with **Django** (backend) and **React** (frontend) to help truck drivers comply with FMCSA Hours of Service (HOS) regulations. Generates electronic logging device (ELD) records and provides trip management tools.
 
-![Demo Screenshot](screenshot(300).png)
+![Demo Screenshot](./Screenshot%20(300).png)
 
 ## Features
 - **Trip Management**: Track pickup/dropoff locations and current cycles
@@ -14,6 +14,8 @@ A full-stack web application built with **Django** (backend) and **React** (fron
 ### Frontend
 - React.js
 - Next.js
+- Vite
+- TypeScript
 - Axios (API calls)
 - React Router (Routing)
 - React Map GL (Map integration)
