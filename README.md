@@ -2,7 +2,7 @@
 
 A full-stack web application built with **Django** (backend) and **React** (frontend) to help truck drivers comply with FMCSA Hours of Service (HOS) regulations. Generates electronic logging device (ELD) records and provides trip management tools.
 
-![Demo Screenshot](./Screenshot%20(300).png)
+![Demo Screenshot](./trip-logi-mapper/public/Screenshot%20(300).png)
 
 ## Features
 - **Trip Management**: Track pickup/dropoff locations and current cycles
