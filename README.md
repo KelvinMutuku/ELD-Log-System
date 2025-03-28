@@ -2,29 +2,26 @@
 
 A full-stack web application built with **Django** (backend) and **React** (frontend) to help truck drivers comply with FMCSA Hours of Service (HOS) regulations. Generates electronic logging device (ELD) records and provides trip management tools.
 
-![Demo Screenshot](./screenshot.png)
+![Demo Screenshot](screenshot(300).png)
 
 ## Features
-- **User Authentication**: Separate login for drivers and admins (JWT-based)
 - **Trip Management**: Track pickup/dropoff locations and current cycles
 - **HOS Compliance**: Automatically enforces 70-hour/8-day rule
 - **Map Integration**: Visualize routes using Mapbox API
 - **ELD Logs**: Generate FMCSA-compliant daily logs
-- **Admin Dashboard**: Manage drivers and review logs
-- **Registration System**: Driver account creation with license validation
 
 ## Technologies Used
 ### Frontend
 - React.js
+- Next.js
 - Axios (API calls)
 - React Router (Routing)
 - React Map GL (Map integration)
-- CSS3
+- Shadcn and TailwindCSS
 
 ### Backend
 - Django REST Framework
 - PostgreSQL (Database)
-- Simple JWT (Authentication)
 - Python 3
 - CORS Headers
 
@@ -61,7 +58,7 @@ A full-stack web application built with **Django** (backend) and **React** (fron
 
 4. Configure database:
    ```bash
-   createdb eld_logs
+   createdb triplog_db
    ```
 
 5. Run migrations:
@@ -72,7 +69,7 @@ A full-stack web application built with **Django** (backend) and **React** (fron
 ### Frontend Setup
 1. Navigate to frontend:
    ```bash
-   cd ../frontend
+   cd ../trip-logi-mapper
    ```
 
 2. Install dependencies:
@@ -80,11 +77,6 @@ A full-stack web application built with **Django** (backend) and **React** (fron
    npm install
    ```
 
-3. Create environment file (`.env`):
-   ```env
-   REACT_APP_MAPBOX_TOKEN=your_mapbox_token
-   REACT_APP_API_URL=http://localhost:8000/api
-   ```
 
 ## Configuration
 ### Backend Environment (backend/.env)
@@ -106,35 +98,27 @@ python manage.py runserver
 
 ### Start Frontend
 ```bash
-cd frontend
-npm start
+cd trip-logi-mapper
+npm run dev
 ```
-
-## API Endpoints
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/api/login/` | POST | User authentication |
-| `/api/register/` | POST | Driver registration |
-| `/api/trips/` | GET/POST | Trip management |
-| `/api/logs/` | GET/POST | ELD log records |
 
 ## Project Structure
 ```
 eld-log-app/
 ├── backend/
-│   ├── trips/              # Django app
+│   ├── api/              # Django app
 │   │   ├── migrations/
 │   │   ├── models.py       # Database models
 │   │   ├── views.py        # API endpoints
 │   ├── manage.py
 │   └── settings.py         # Django configuration
 │
-└── frontend/
+└── trip-logi-mapper/
     ├── public/
     ├── src/
-    │   ├── components/     # React components
-    │   ├── App.js          # Main application
-    │   └── index.js        # React entry point
+    │   ├── pages/     # React pages
+    │   ├── index.tsx          # Main application
+    │   
     └── package.json
 ```
 
